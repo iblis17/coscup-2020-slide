@@ -1,0 +1,53 @@
+\documentclass{beamer}
+
+\usetheme{Berlin}
+
+\usepackage{textcomp}
+
+% Chinese typesetting
+\usepackage{xeCJK}
+\setCJKmainfont{HanWangWCL06}
+
+\title{The Ports Framework Workshop}
+\author{Iblis Lin \textlangle{}iblis@hs.ntnu.edu.tw\textrangle{}}
+
+\setbeamertemplate{footline}[frame number]
+
+\begin{document}
+
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}[t]{Introduction}
+  名詞介紹
+  \begin{itemize}
+    \item Ports
+    \item Ports Collection
+    \item Ports tree
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Resources}
+  \begin{itemize}
+    \item Porter's Handbook
+    \item /usr/ports/
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Building Flow of a port}
+  \begin{enumerate}
+    \item fetch
+    \item extract
+    \item patch
+    \item configure
+    \item build
+    \item stage
+    \item package
+    \item install
+  \end{enumerate}
+\end{frame}
+
+
+\end{document}
