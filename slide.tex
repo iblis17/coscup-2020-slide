@@ -7,6 +7,7 @@
 % Chinese typesetting
 \usepackage{xeCJK}
 \setCJKmainfont{HanWangWCL06}
+\setmainfont{Fira Code}
 
 \title{The Ports Framework Workshop}
 \author{Iblis Lin \textlangle{}iblis@hs.ntnu.edu.tw\textrangle{}}
@@ -29,11 +30,41 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}[t]{Resources}
+\begin{frame}[t,fragile]{Resources}
   \begin{itemize}
-    \item Porter's Handbook
-    \item /usr/ports/
+    \item \href{https://www.freebsd.org/doc/en_US.ISO8859-1/books/porters-handbook/book.html}{Porter's Handbook}
+    \item \verb|/usr/ports/|
+      \begin{itemize}
+        \item \verb|Mk/bsd.port.mk|
+      \end{itemize}
   \end{itemize}
+\end{frame}
+
+\begin{frame}[t,fragile]{Topics}
+  \begin{itemize}
+    \item Making a new port
+      \begin{itemize}
+        \item Dir structure
+      \end{itemize}
+    \item Upgrading a port
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t,fragile]{Make a new port / Dir structure}
+  \begin{itemize}
+    \item Ports framework 本身是由一大堆的 \verb|Makefile| 堆砌而成
+    \item 東西長在 \verb|/usr/ports/Mk/*|
+    \item 一個簡單的範例 \verb|ports-mgmt/porttools|
+  \end{itemize}
+
+  \begin{verbatim}
+  └─[iblis@GaeBuidhe]% find ports-mgmt/porttools
+  ports-mgmt/porttools
+  ports-mgmt/porttools/pkg-plist
+  ports-mgmt/porttools/pkg-descr
+  ports-mgmt/porttools/distinfo
+  ports-mgmt/porttools/Makefile
+  \end{verbatim}
 \end{frame}
 
 \begin{frame}[t]{Building Flow of a port}
