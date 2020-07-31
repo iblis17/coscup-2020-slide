@@ -1,4 +1,4 @@
-\documentclass{beamer}
+\documentclass[aspectratio=169]{beamer}
 
 \usetheme{Berlin}
 
@@ -50,7 +50,9 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}[t,fragile]{Make a new port / Dir structure}
+\section{Making a New Port}
+\subsection{Dir}
+\begin{frame}[t,fragile]{Dir structure}
   \begin{itemize}
     \item Ports framework 本身是由一大堆的 \verb|Makefile| 堆砌而成
     \item 東西長在 \verb|/usr/ports/Mk/*|
@@ -67,7 +69,35 @@
   \end{verbatim}
 \end{frame}
 
-\begin{frame}[t]{Building Flow of a port}
+\subsection{porttools}
+\begin{frame}[t,fragile]{Getting Started with ports-mgmt/porttools}
+  \verb|% port create foo|
+
+  \begin{block}{A Minimal Makefile} \begin{verbatim}
+PORTNAME=       foo
+DISTVERSION=
+CATEGORIES=     devel
+MASTER_SITES=
+
+MAINTAINER=     you@host
+COMMENT=
+
+.include <bsd.port.mk> \end{verbatim}
+  \end{block}
+\end{frame}
+
+\begin{frame}[t,fragile]{Getting Started with ports-mgmt/porttools}
+  \begin{itemize}
+    \item \verb|make -V| 方便 debug
+    \item E.g \verb|make -V PORTNAME|
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Makefile}
+  \begin{itemize}
+    \item Port framework 定義了 build 一個 port 所需要的 make target
+    \item 每個 target 都還會有，pre-<target> 跟 post-<target> hooks 可以使用
+  \end{itemize}
   \begin{enumerate}
     \item fetch
     \item extract
@@ -80,5 +110,9 @@
   \end{enumerate}
 \end{frame}
 
+\section{Updating a Port}
+\begin{frame}[t]{TBD}
+  t
+\end{frame}
 
 \end{document}
