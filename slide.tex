@@ -184,9 +184,38 @@
   \end{itemize}
 \end{frame}
 
+\begin{frame}[t,fragile]{Submitting to FreeBSD's Bugzilla}
+  \begin{itemize}
+    \item \verb`git add devel/foo`
+    \item \verb`git diff --cached > foo.diff`
+    \item \href{https://bugs.freebsd.org/bugzilla/enter_bug.cgi}{https://bugs.freebsd.org/bugzilla/enter\_bug.cgi}
+  \end{itemize}
+\end{frame}
+
 \section{Updating a Port}
-\begin{frame}[t]{TBD}
-  t
+\begin{frame}[t,fragile]{Upgrading a Port}
+  \begin{itemize}
+    \item 其實所有流程都跟前面說的一樣
+    \item 在開始前先去 Bugzilla 找有沒有正在進行中的 upgrading
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t,fragile]{Other Port Framework Features}
+  \begin{itemize}
+    \item \verb`OPTIONS` Framework 與 plist issue
+      \begin{itemize}
+        \item \href{https://www.freebsd.org/doc/en/books/porters-handbook/book.html#makefile-options}{https://www.freebsd.org/doc/en/books/porters-handbook/book.html\#makefile-options}
+        \item \href{https://www.freebsd.org/doc/en/books/porters-handbook/book.html#plist}{https://www.freebsd.org/doc/en/books/porters-handbook/book.html\#plist}
+      \end{itemize}
+    \item \verb`USE` 與 \verb`USE_*`
+      \begin{itemize}
+        \item \href{https://www.freebsd.org/doc/en/books/porters-handbook/book.html#special}{https://www.freebsd.org/doc/en/books/porters-handbook/book.html\#special}
+      \end{itemize}
+    \item Flavors
+      \begin{itemize}
+        \item \href{https://www.freebsd.org/doc/en/books/porters-handbook/book.html#flavors}{https://www.freebsd.org/doc/en/books/porters-handbook/book.html\#flavors}
+      \end{itemize}
+  \end{itemize}
 \end{frame}
 
 \end{document}
