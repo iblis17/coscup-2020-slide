@@ -65,8 +65,8 @@
 
 \begin{frame}[t,fragile]{Getting Started with ports-mgmt/porttools}
   \begin{itemize}
-    \item \verb`mkdir ports`
-    \item \verb`git clone https://github.com/freebsd/freebsd-ports.git ports/dev`
+    \item \verb`mkdir ~/ports`
+    \item \verb`git clone https://github.com/freebsd/freebsd-ports.git ~/ports/dev`
     \item \verb`cd ports/dev/devel`
     \item \verb`port create foo`
   \end{itemize}
@@ -133,13 +133,54 @@
 
 \begin{frame}[t,fragile]{Testing the Port via Poudriere}
   \begin{itemize}
+    \item 先用 \verb`ports-mgmt/portlint` 來看看有沒有啥大問題
+      \begin{itemize}
+        \item 但 static anaylizer 有時候會抽筋
+      \end{itemize}
     \item \verb`ports-mgmt/poudriere`
     \item Idea
       \begin{itemize}
-        \item 在乾淨的環境 build port，透過 Jails
-        \item 在不同的 world build，透過 Jails
+        \item 在乾淨的環境 build port，透過 Jail
+        \item 在不同的 world build，透過 Jail
         \item 用不同的 ports tree build
       \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t,fragile]{Poudriere: Configure}
+  \begin{itemize}
+    \item 設定一下 \verb`/usr/local/etc/poudriere.conf`，通常就調一下 zfs 設定
+    \item \verb`FREEBSD_HOST=https://download.FreeBSD.org`
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t,fragile]{Poudriere: Set Up Jails}
+  \begin{itemize}
+    \item<1-> 先偷看一下哪些 RELEASE 版本正在 support
+      \begin{itemize}
+        \item \href{https://www.freebsd.org/releases/}{https://www.freebsd.org/releases/}
+      \end{itemize}
+
+    \item<2-> 建立一臺 12.1-RELEASE amd64 的 Jail
+    \item<2-> \verb`# poudriere jail -c -j 121r -v 12.1-RELEASE`
+    \item<3-> 再來是 12.1-RELEASE i386 的 Jail
+    \item<3-> \verb`# poudriere jail -c -j 121r-i386 -v 12.1-RELEASE -a i386`
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t,fragile]{Poudriere: Set Up Port Tree}
+  \begin{itemize}
+    \item 我習慣上，用 git clone ports tree 然後手動加入 poudriere
+    \item \verb`poudriere ports -c -m null -M ~/ports/dev -p dev`
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t,fragile]{Poudriere: testports}
+  \begin{itemize}
+    \item \verb`poudriere testport -j 121r      -p dev -o devel/foo`
+    \item \verb`poudriere testport -j 121r-i386 -p dev -o devel/foo`
+    \item e.g. \href{https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=233122}{\#233122}
+    \item e.g. \href{https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=235872}{\#235872}
   \end{itemize}
 \end{frame}
 
